@@ -1,3 +1,7 @@
+# Narunat Pantapalin_5406173_CSE
+# Neeraj Garud_5269400_CSE
+# Kshitij Patle_5420023_CSE
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -52,4 +56,7 @@ if __name__ == "__main__" :
 # When increasing the number of data points, in the region of x between (-2,2) the result is closer to the exact function until 34 data points, 
 # after this the result in this region is diverging from the exact function (Using slider on the plot to visualize how the plot change). 
 # Furthermore, in the region of x between (-3, -2) and (2, 3), the result is diverging from the exact function since the beginning. 
-# My intepretation: More polynomial degree doesn't mean better result
+# These called Runge's phenomenon, which appears when we interpolate the function with high order polynomial at equidistant points. 
+# The magnitude of the (n+1)-th derivative of Runge's function increases when n increases. 
+# The consequence is that the resulting upper bound error tends to infinity when n tends to infinity.
+# This shows that high-degree polynomial interpolation at equidistant points can be troublesome.
