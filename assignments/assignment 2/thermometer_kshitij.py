@@ -3,6 +3,7 @@ import random
 import matplotlib.pyplot as plt
 
 #function get_measurement(T)
+random.seed(42)
 def get_measurement(t):
     
     error = random.uniform(-0.75,0.75)   #error generation between -0.75 to 0.75
@@ -49,3 +50,11 @@ y = alpha + beta*t
 plt.plot(t,y, linestyle='dashed')
 plt.show()
 
+#calculating the Mean squared error
+mse=0
+for i in range(len(h)):
+    mse += ( (y[i]-h[i])**2 )
+    
+mse = mse / len(h)
+
+print("MSE:",mse)
