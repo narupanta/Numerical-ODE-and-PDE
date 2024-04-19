@@ -25,8 +25,8 @@ plt.plot(T, H, linestyle='--', color='red', label = "Regression")
 plt.text(30, 5, 'H_regression = {:.2f} + {:.2f} * T'.format(alpha, beta), bbox=dict(facecolor='white', alpha=0.5))
 plt.text(30, 3, 'MSE = {:.2e}'.format(MSE(H_regression, H)), bbox=dict(facecolor='white', alpha=0.5))
 # Add labels and title
-plt.xlabel('T')
-plt.ylabel('H')
+plt.xlabel('Temperature')
+plt.ylabel('Height')
 plt.title('')
 plt.legend()
 # Show plot
