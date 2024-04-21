@@ -1,9 +1,12 @@
+# Narunat Pantapalin_5406173_CSE
+# Neeraj Garud_5269400_CSE
+# Kshitij Patle_5420023_CSE
 import random
 import numpy as np
 import matplotlib.pyplot as plt
 random.seed(42)
 noise = 0.75
-def get_measurements(T) :
+def get_measurement(T) :
     # (a) get the measurement with random noise between -0.75 and 0.75
     return 2 + 0.2 * T + random.uniform(-noise, noise)
 def regression(x, y) :
@@ -21,11 +24,15 @@ def regression(x, y) :
 def MSE(y_regression, y_data) :
     return 1/len(y_data) * np.sum((y_regression - y_data)**2)
 def MAE(y_regression, y_data) :
-    # (e.1) MAE (Mean Absolute Error) is another metric for determining the accuracy of the linear regression
+    # (e.1) MAE (Mean Absolute Error) is another metric for determining the accuracy of the linear regression.
+    # MSE identifies the larger errors to a great degree compared to MAE - MSE squares the errors 
+    # before averaging them, which means larger errors have a disproportionately larger effect on 
+    # the MSE compared to smaller errors. This can make MSE more sensitive to outliers than MAE.
+    # In summary, the MAE is suitable for higher noise/outlier data than MSE.
     return 1/len(y_data) * np.sum(abs(y_regression - y_data))
 
 T = np.linspace(0, 80, 15)
-H = get_measurements(T)
+H = get_measurement(T)
 alpha, beta = regression(T, H)
 H_regression = alpha + beta * T
 # (b) create a visualization of the relationship between temperature and height of the liquid pillar
@@ -36,8 +43,8 @@ plt.text(40, 8, 'H_regression = {:.2f} + {:.2f} * T'.format(alpha, beta), bbox=d
 plt.text(40, 5, 'MSE = {:.2e}'.format(MSE(H_regression, H)), bbox=dict(facecolor='white', alpha=0.5))
 plt.text(40, 3, 'MAE = {:.2e}'.format(MAE(H_regression, H)), bbox=dict(facecolor='white', alpha=0.5))
 # Add labels and title
-plt.xlabel('T: Temperature ()')
-plt.ylabel('H')
+plt.xlabel('T: Temperature')
+plt.ylabel('H: Height of the liquid pillar')
 plt.title('Linear Regression')
 # plt.xlim((0,8))
 # plt.ylim((2,4))
