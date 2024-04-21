@@ -6,9 +6,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 random.seed(42)
 noise = 0.75
+size = 50
 def get_measurement(T) :
     # (a) get the measurement with random noise between -0.75 and 0.75
-    return 2 + 0.2 * T + random.uniform(-noise, noise)
+    return 2 + 0.2 * T + np.random.uniform(-noise, noise, size = size)
 def regression(x, y) :
     # (c) calculate the parameters of the linear regression by using
     # pseudo inverse method
@@ -31,14 +32,16 @@ def MAE(y_regression, y_data) :
     # In summary, the MAE is suitable for higher noise/outlier data than MSE.
     return 1/len(y_data) * np.sum(abs(y_regression - y_data))
 
-T = np.linspace(0, 80, 15)
+T = np.linspace(0, 80, size)
 H = get_measurement(T)
+
 alpha, beta = regression(T, H)
 H_regression = alpha + beta * T
 # (b) create a visualization of the relationship between temperature and height of the liquid pillar
 plt.scatter(T, H,  label='Data Points', marker='x')
+# plt.plot(T, H)
 # (d) plot the linear regression along with the data points  
-plt.plot(T, H, linestyle='--', color='red', label = "Regression")
+plt.plot(T, H_regression, linestyle='--', color='red', label = "Regression")
 plt.text(40, 8, 'H_regression = {:.2f} + {:.2f} * T'.format(alpha, beta), bbox=dict(facecolor='white', alpha=0.5))
 plt.text(40, 5, 'MSE = {:.2e}'.format(MSE(H_regression, H)), bbox=dict(facecolor='white', alpha=0.5))
 plt.text(40, 3, 'MAE = {:.2e}'.format(MAE(H_regression, H)), bbox=dict(facecolor='white', alpha=0.5))
