@@ -9,7 +9,7 @@ noise = 0.75
 size = 50
 def get_measurement(T) :
     # (a) get the measurement with random noise between -0.75 and 0.75
-    return 2 + 0.2 * T + np.random.uniform(-noise, noise, size = size)
+    return 2 + 0.2 * T + random.uniform(-noise, noise)
 def regression(x, y) :
     # (c) calculate the parameters of the linear regression by using
     # pseudo inverse method
@@ -33,7 +33,7 @@ def MAE(y_regression, y_data) :
     return 1/len(y_data) * np.sum(abs(y_regression - y_data))
 
 T = np.linspace(0, 80, size)
-H = get_measurement(T)
+H = np.array([get_measurement(t) for t in T])
 
 alpha, beta = regression(T, H)
 H_regression = alpha + beta * T
