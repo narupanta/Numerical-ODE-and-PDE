@@ -4,17 +4,18 @@ import matplotlib.pyplot as plt
 
 #function get_measurement(T)
 random.seed(42)
+temp_points = 45
 def get_measurement(t):
     
-    error = random.uniform(-0.75,0.75)   #error generation between -0.75 to 0.75
+    error = np.random.uniform(-0.75,0.75, size = temp_points)   #error generation between -0.75 to 0.75
     height = 2 + 0.5*t + error
 
     return height
 
-t = np.linspace(0, 80 ,15)   #generation of temparture values between 0 to 80, as t is a natural number
+t = np.linspace(0, 80 ,temp_points)   #generation of temparture values between 0 to 80, as t is a natural number
 h = get_measurement(t)        #height values for corresponding temperature
 
-plt.plot(t, h, 'ro')         # b is for blue, o for circle dot
+plt.plot(t, h, 'rx')         # b is for blue, o for circle dot
 plt.xlabel("Temparture")
 plt.ylabel("Height")
 # plt.show()
