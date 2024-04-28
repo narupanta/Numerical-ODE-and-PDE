@@ -8,6 +8,7 @@ def exponential(x) :
     return np.e**x
 I, err = scipy.integrate.quad(exponential, 0, 2 * np.pi)
 
+
 def left_rectangle(f, a, b) :
     return f(a) * (b - a)
 def right_rectangle(f, a, b) :
@@ -18,6 +19,8 @@ def trapezoid(f, a, b) :
     return 0.5 * (f(a) + f(b)) * (b - a)
 def kepler(f, a, b) :
     return (b - a)/6 *  (f(a) + 4 * f((a+b)/2) + f(b))
+def own(f, a, b):
+    return (b - a)/8 *  (f(a) + f((2*a+b)/3 ) +  f((a+2*b)/3 ) + f(b)) 
 
 class LagrangeInterpolation :
     def __init__(self, x: np.array, y: np.array) :
@@ -65,6 +68,7 @@ print("Calculated area from Right rectangle rule :=", "{:.02f}".format(right_rec
 print("Calculated area from Midpoint rule :=", "{:.02f}".format(midpoint(exponential, a = 0, b = 2 * np.pi )), "unit**2")
 print("Calculated area from Trapezoid rule :=", "{:.02f}".format(trapezoid(exponential, a = 0, b = 2 * np.pi )), "unit**2")
 print("Calculated area from Simpson’s/ Kepler’s barrel rule :=", "{:.02f}".format(kepler(exponential, a = 0, b = 2 * np.pi )), "unit**2")
+print("Calculated area from own (3/8) rule :=", "{:.02f}".format(own(exponential, a = 0, b = 2 * np.pi )), "unit**2")
 
 fig, ax = plt.subplots(nrows=2, ncols=3)
 fig.set_figheight(6)
