@@ -20,7 +20,7 @@ def trapezoid(f, a, b) :
 def kepler(f, a, b) :
     return (b - a)/6 *  (f(a) + 4 * f((a+b)/2) + f(b))
 def own(f, a, b):
-    return (b - a)/8 *  (f(a) + f((2*a+b)/3 ) +  f((a+2*b)/3 ) + f(b)) 
+    return (b - a)/8 *  (f(a) + 3 * f((2*a+b)/3 ) + 3 * f((a+2*b)/3 ) + f(b)) 
 
 class LagrangeInterpolation :
     def __init__(self, x: np.array, y: np.array) :
