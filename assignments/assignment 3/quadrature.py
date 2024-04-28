@@ -1,3 +1,7 @@
+# Narunat Pantapalin_5406173_CSE
+# Neeraj Garud_5269400_CSE
+# Kshitij Patle_5420023_CSE
+
 import numpy as np
 import scipy
 import scipy.integrate
