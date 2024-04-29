@@ -1,3 +1,7 @@
+# Narunat Pantapalin_5406173_CSE
+# Neeraj Garud_5269400_CSE
+# Kshitij Patle_5420023_CSE
+
 import numpy as np
 import scipy
 import scipy.integrate
@@ -18,6 +22,8 @@ def trapezoid(f, a, b) :
     return 0.5 * (f(a) + f(b)) * (b - a)
 def kepler(f, a, b) :
     return (b - a)/6 *  (f(a) + 4 * f((a+b)/2) + f(b))
+def own_quadrature(f, a, b) :
+    return 
 
 class LagrangeInterpolation :
     def __init__(self, x: np.array, y: np.array) :
