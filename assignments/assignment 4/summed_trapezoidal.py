@@ -16,7 +16,7 @@ def f(x) :
 def area_calculate(f, a, b, J) :
     intervals = np.linspace(a, b, J + 1)
     total_area = 0
-    for idx in range(J - 1) :
+    for idx in range(J) :
         total_area += trapezoid(f, intervals[idx], intervals[idx + 1])
 
     return total_area
@@ -88,3 +88,7 @@ if __name__ == "__main__" :
 
     plt.show()
     
+#using button to adjust the number of intervals.
+#we can see that the accuracy increase with number of intervals.
+#with blank space between the actual and approximated graph becomes smaller.
+#and also the shape of approximated graph becomes closer to the actual graph.

@@ -35,6 +35,9 @@ def optimized_romberg_extrapolation(f, a, b, tolerance) :
 
 if __name__ == "__main__" :
     exact_result, _ = scipy.integrate.quad(expocos, 0, 1)
-    result, n = optimized_romberg_extrapolation(expocos, 0, 1, 1e-6)
+    step2_result = romberg_extrapolation(expocos, 0, 1, 2)
+    optimized_result, n = optimized_romberg_extrapolation(expocos, 0, 1, 1e-6)
+
     print("exact result:", exact_result, "sq unit")
-    print("approximate result:", result, "sq unit with Romberg step =", n)
+    print("approximate result:", step2_result, "sq unit with Romberg step =", 2)
+    print("approximate result:", optimized_result, "sq unit with Romberg step =", n)
