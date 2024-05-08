@@ -31,8 +31,7 @@ f_curve = func_x(x_axis)
 f_tangent_curve = derivative_func_x(x0) * (x_axis - x0) + func_x(x0)
 
 # creating graph space for two graphs
-graph, (plot1, plot2) = plt.subplots(1, 2)
-
+graph, (plot1, plot2) = plt.subplots(1, 2, figsize=(10,5))
 plot1.plot( x_axis,f_curve)
 plot1.plot( x_axis,f_tangent_curve,'r')
 
