@@ -44,6 +44,10 @@ plot2.semilogy(step_h, forward_error, label="right")
 plot2.semilogy(step_h, backward_error,label="left", color= 'r')
 plot2.semilogy(step_h, central_error,label="central", color = 'g')
 plot2.invert_xaxis()
+plt.legend()
 plt.xlabel("h")
 plt.ylabel("|f'(x0) - f' l,r,c(x0)|")
 plt.show()
+
+# semilogy() depicts the error best, because change of error is very fast for small change in h
+# so displaying y-axis in logarithm scale gives us the best representation of error 
