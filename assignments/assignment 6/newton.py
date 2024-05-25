@@ -1,23 +1,15 @@
+# Narunat Pantapalin_5406173_CSE
+# Neeraj Garud_5269400_CSE
+# Kshitij Patle_5420023_CSE
 import numpy as np
 import matplotlib.pyplot as plt
-
+import sympy as sp
 def F(X):
     x1, x2 = X
     return np.array([np.e**(-np.e**(-(x1 + x2))) - x2 * (1 + x1**2), x1 * np.cos(x2) + x2 * np.sin(x1) - 1/2], dtype = "float64")
-def G(X) :
-    x1, x2 = X
-    return np.e**(-1/3*x1**3 + x1 - x2**2)
-def gradient(f, x, h=1e-8):
-    n = len(x)
-    grad = [0] * n
-    
-    # Compute the partial derivatives
-    for i in range(n):
-        x_step = list(x)
-        x_step[i] += h
-        grad[i] = (f(x_step) - f(x)) / h
-    
-    return grad
+# def G(X) :
+#     x1, x2 = X
+#     return np.e**(-1/3*x1**3 + x1 - x2**2)
 def jacobian(f, x, h=1e-8):
     n = len(x)
     fx = f(x)
@@ -58,11 +50,17 @@ def plot_newton_path(x_history) :
     plt.xlabel("$x_1$")
     plt.ylabel("$x_2$")
     plt.legend()
-    plt.title("Path which Newton’s method takes in Assignment 6.1 (c)")
+    plt.title("Path which Newton’s method taken")
     plt.show()
 if __name__ == "__main__" :
-    x_history = newton(F, np.array([0, 0], dtype="float64"))
-    plot_newton_path(x_history)
-
-    x2_history = newton(lambda x : gradient(G(x), x) , np.array([0, 0], dtype = "float64"))
-    plot_newton_path(x2_history)
+    assignment6_1c_history = newton(F, np.array([0, 0], dtype="float64"))
+    plot_newton_path(assignment6_1c_history)
+    x, y = sp.symbols("x y")
+    G = np.e**(-1/3*x**3 + x - y**2)
+    gradG = sp.lambdify([(x, y)], [sp.diff(G, var) for var in (x, y)] )
+    assignment6_1d_history = newton(gradG, np.array([0.1, 0.1], dtype = "float64"))
+    plot_newton_path(assignment6_1d_history)
+    print("Assignment 6.1d answer")
+    print("One of the extremal points of the function G is: ", assignment6_1d_history[-1])
+    print("Hessian Matrix of G is the jacobian of gradient of G:\n", jacobian(gradG, assignment6_1d_history[-1]))
+    print("Classify the type of the extremal point by the determinant of Hessian Matrix", np.linalg.det(jacobian(gradG, assignment6_1d_history[-1])), "< 0 which means this extremal point is a saddle point")
